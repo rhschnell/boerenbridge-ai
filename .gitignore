@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# Data files
+data/*.csv
+data/*.json
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Coverage report
+.coverage
+htlmcov/
+
+# Bot reports
+_heuristic_bot/
+_random_bot/
