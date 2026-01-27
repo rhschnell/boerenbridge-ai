@@ -1,3 +1,5 @@
+BOT_VERSION = "heuristic_v1"
+
 class HeuristicBot:
     CARD_EV_NT = [0, 0.03, 0.06, 0.1, 0.13, 0.16, 0.19, 0.23]
     CARD_EV_T = [0.77, 0.81, 0.84, 0.87, 0.9, 0.94, 0.97, 1]
@@ -20,12 +22,13 @@ class HeuristicBot:
                 
         lead_player = engine.trick_starter
         lead_card = engine.current_trick[lead_player]
+        remaining_tricks = engine.cards_per_player - engine.trick_number
 
         want_to_win = False
-        if need > 0: 
-            want_to_win = True
-        if need <= 0:
+        if need == 0:
             want_to_win = False
+        if need >= remaining_tricks: 
+            want_to_win = True
 
         if lead_card is None:
             if want_to_win:
@@ -51,11 +54,11 @@ class HeuristicBot:
 
         for card in hand:
             if trump == 4:
-                result += self.CARD_EV_SANS[card.rank - 7]
+                result += self.CARD_EV_SANS[card.rank]
             elif card.suit == trump:
-                result += self.CARD_EV_T[card.rank - 7]
+                result += self.CARD_EV_T[card.rank]
             else: 
-                result += self.CARD_EV_NT[card.rank - 7]
+                result += self.CARD_EV_NT[card.rank]
 
         return result
 

@@ -209,7 +209,7 @@ class BoerenbridgeEngine:
         return [
             Card(suit, rank)
             for suit in range(4)
-            for rank in range(7, 15)
+            for rank in range(0, 8)
         ]
 
     def _deal_cards(self, cards_per_player):

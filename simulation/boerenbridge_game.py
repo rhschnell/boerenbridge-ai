@@ -1,27 +1,17 @@
 import random
-from bots.random_bot import Bot
-from bots.heuristic_bot import HeuristicBot
 from engine.game_engine import BoerenbridgeEngine
 
 class BoerenbridgeGame:
     TOTAL_ROUNDS = 16
     NUM_PLAYERS = 4
 
-    def __init__(self, seed=None, on_trick_end=None, on_round_end=None):
+    def __init__(self, bots=None, seed=None, on_trick_end=None, on_round_end=None):
         self.engine = BoerenbridgeEngine(seed=seed)
         self.rng = random.Random(seed)
         self.cumulative_scores = [0] * self.NUM_PLAYERS
         self.bets_made = [0] * self.NUM_PLAYERS
 
-        # self.bots = [
-        #     Bot(pid, self.rng)
-        #     for pid in range(self.NUM_PLAYERS) 
-        # ]
-        self.bots = [
-            HeuristicBot(pid)
-            for pid in range(self.NUM_PLAYERS) 
-        ]
-
+        self.bots = bots
         self.on_trick_end = on_trick_end
         self.on_round_end = on_round_end
 
